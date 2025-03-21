@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: 0c15f2f8532364805a02d221b3130778
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6559789347511280619
+    second: googbye-goodnight_0
+  - first:
+      213: -442435029859744627
+    second: googbye-goodnight_1
+  - first:
+      213: -4008890455332686538
+    second: googbye-goodnight_2
+  - first:
+      213: 7788593192760721469
+    second: googbye-goodnight_3
+  - first:
+      213: -2650848176197875489
+    second: googbye-goodnight_4
+  - first:
+      213: 9181970254478766641
+    second: googbye-goodnight_5
+  - first:
+      213: 6548859234246381893
+    second: googbye-goodnight_6
+  - first:
+      213: 1972198801203587885
+    second: googbye-goodnight_7
+  - first:
+      213: 1558594534564884814
+    second: googbye-goodnight_8
+  - first:
+      213: -7735831637247365252
+    second: googbye-goodnight_9
+  - first:
+      213: -8398618575575770219
+    second: googbye-goodnight_10
+  - first:
+      213: 5083679299627907479
+    second: googbye-goodnight_11
+  - first:
+      213: -3604229309631176668
+    second: googbye-goodnight_12
+  - first:
+      213: -2072124624344912814
+    second: googbye-goodnight_13
+  - first:
+      213: -943798291774418536
+    second: googbye-goodnight_14
+  - first:
+      213: -3577809610061859274
+    second: googbye-goodnight_15
+  - first:
+      213: 5314911081550570655
+    second: googbye-goodnight_16
+  - first:
+      213: 3243609118570235129
+    second: googbye-goodnight_17
+  - first:
+      213: 1120102616695732110
+    second: googbye-goodnight_18
+  - first:
+      213: -3494500826202412856
+    second: googbye-goodnight_19
+  - first:
+      213: 8177810071238612364
+    second: googbye-goodnight_20
+  - first:
+      213: -4099856489369082058
+    second: googbye-goodnight_21
+  - first:
+      213: 306426147155425595
+    second: googbye-goodnight_22
+  - first:
+      213: 5958744841874442685
+    second: googbye-goodnight_23
+  - first:
+      213: -3898455984882189634
+    second: googbye-goodnight_24
+  - first:
+      213: 7409234453192745111
+    second: googbye-goodnight_25
+  - first:
+      213: 8666368562627427802
+    second: googbye-goodnight_26
+  - first:
+      213: -9076422073409557498
+    second: googbye-goodnight_27
+  - first:
+      213: 7145046313614567765
+    second: googbye-goodnight_28
+  - first:
+      213: -1474553282054801493
+    second: googbye-goodnight_29
+  - first:
+      213: 2341822073379309390
+    second: googbye-goodnight_30
+  - first:
+      213: -1414257882836151256
+    second: googbye-goodnight_31
+  - first:
+      213: 8054541931306930109
+    second: googbye-goodnight_32
+  - first:
+      213: -3658458098080539713
+    second: googbye-goodnight_33
+  - first:
+      213: 633543343585988097
+    second: googbye-goodnight_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Win64
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: googbye-goodnight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2579
+        height: 1683
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be32dc308ad090b50800000000000000
+      internalID: 6559789347511280619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e1cd8b7c0e57e08dcbf8b8edd83046fd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      googbye-goodnight_0: 6559789347511280619
+      googbye-goodnight_1: -442435029859744627
+      googbye-goodnight_10: -8398618575575770219
+      googbye-goodnight_11: 5083679299627907479
+      googbye-goodnight_12: -3604229309631176668
+      googbye-goodnight_13: -2072124624344912814
+      googbye-goodnight_14: -943798291774418536
+      googbye-goodnight_15: -3577809610061859274
+      googbye-goodnight_16: 5314911081550570655
+      googbye-goodnight_17: 3243609118570235129
+      googbye-goodnight_18: 1120102616695732110
+      googbye-goodnight_19: -3494500826202412856
+      googbye-goodnight_2: -4008890455332686538
+      googbye-goodnight_20: 8177810071238612364
+      googbye-goodnight_21: -4099856489369082058
+      googbye-goodnight_22: 306426147155425595
+      googbye-goodnight_23: 5958744841874442685
+      googbye-goodnight_24: -3898455984882189634
+      googbye-goodnight_25: 7409234453192745111
+      googbye-goodnight_26: 8666368562627427802
+      googbye-goodnight_27: -9076422073409557498
+      googbye-goodnight_28: 7145046313614567765
+      googbye-goodnight_29: -1474553282054801493
+      googbye-goodnight_3: 7788593192760721469
+      googbye-goodnight_30: 2341822073379309390
+      googbye-goodnight_31: -1414257882836151256
+      googbye-goodnight_32: 8054541931306930109
+      googbye-goodnight_33: -3658458098080539713
+      googbye-goodnight_34: 633543343585988097
+      googbye-goodnight_4: -2650848176197875489
+      googbye-goodnight_5: 9181970254478766641
+      googbye-goodnight_6: 6548859234246381893
+      googbye-goodnight_7: 1972198801203587885
+      googbye-goodnight_8: 1558594534564884814
+      googbye-goodnight_9: -7735831637247365252
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
