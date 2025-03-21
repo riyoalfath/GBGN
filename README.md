@@ -4,7 +4,7 @@ AN IMPLEMENTATION OF THIRD SDGS
 
 A GAME CONCEPT BY SPLEENWORKS
 
-================================
+--------------------------------
 
 Me as DESIGNER & WRITER
 
