@@ -1,4 +1,3 @@
-================================
 GOODBYE GOODNIGHT
 AN IMPLEMENTATION OF THIRD SDGS
 ================================
@@ -8,6 +7,9 @@ A GAME CONCEPT BY SPLEENWORKS
 ================================
 
 Me as DESIGNER & WRITER
+
 AZKA FARIDI as PROGRAMMER
+
 ADNAN AL QADRI as VISUAL ARTIST
+
 ARCHIE PH SINAGA as QA ENGINEER
