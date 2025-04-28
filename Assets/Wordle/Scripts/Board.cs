@@ -1,32 +1,38 @@
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(-1)]
 public class Board : MonoBehaviour
 {
-    private static readonly KeyCode[] SUPPORTED_KEYS = new KeyCode[]
-    {
+    private static readonly KeyCode[] SUPPORTED_KEYS = new KeyCode[] {
         KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F,
         KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L,
         KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R,
         KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X,
-        KeyCode.Y, KeyCode.Z
+        KeyCode.Y, KeyCode.Z,
     };
 
+    private static readonly string[] SEPARATOR = new string[] { "\r\n", "\r", "\n" };
+
     private Row[] rows;
+    private int rowIndex;
+    private int columnIndex;
 
     private string[] solutions;
     private string[] validWords;
     private string word;
 
-    private int rowIndex;
-    private int columnIndex;
-
-    [Header("States")]
+    [Header("Tiles")]
     public Tile.State emptyState;
     public Tile.State occupiedState;
-    public Tile.State correctState; // green color
-    public Tile.State wrongSpotState; // yellow color
-    public Tile.State incorrectState; // red color
+    public Tile.State correctState;
+    public Tile.State wrongSpotState;
+    public Tile.State incorrectState;
+
+    [Header("UI")]
+    public GameObject tryAgainButton;
+    public GameObject newWordButton;
+    public GameObject invalidWordText;
 
     private void Awake()
     {
@@ -36,16 +42,31 @@ public class Board : MonoBehaviour
     private void Start()
     {
         LoadData();
-        SetRandomWord();
+        NewGame();
     }
 
     private void LoadData()
     {
-        TextAsset textFile = Resources.Load("official_wordle_all") as TextAsset;
-        validWords = textFile.text.Split('\n');
+        TextAsset textFile = Resources.Load("official_wordle_common") as TextAsset;
+        solutions = textFile.text.Split(SEPARATOR, System.StringSplitOptions.None);
 
-        textFile = Resources.Load("official_wordle_common") as TextAsset;
-        solutions = textFile.text.Split('\n');
+        textFile = Resources.Load("official_wordle_all") as TextAsset;
+        validWords = textFile.text.Split(SEPARATOR, System.StringSplitOptions.None);
+    }
+
+    public void NewGame()
+    {
+        ClearBoard();
+        SetRandomWord();
+
+        enabled = true;
+    }
+
+    public void TryAgain()
+    {
+        ClearBoard();
+
+        enabled = true;
     }
 
     private void SetRandomWord()
@@ -58,36 +79,50 @@ public class Board : MonoBehaviour
     {
         Row currentRow = rows[rowIndex];
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0); // 0: MainMenu Scene
+        }
+
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            // backspacing...
             columnIndex = Mathf.Max(columnIndex - 1, 0);
             currentRow.tiles[columnIndex].SetLetter('\0');
             currentRow.tiles[columnIndex].SetState(emptyState);
+            invalidWordText.SetActive(false);
         }
-        else if (columnIndex >= rows[rowIndex].tiles.Length)
+        else if (columnIndex >= currentRow.tiles.Length)
         {
-            // input row...
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
+            if (Input.GetKeyDown(KeyCode.Return)) {
                 SubmitRow(currentRow);
             }
         }
-
-        for (int i = 0; i < SUPPORTED_KEYS.Length; i++)
+        else
         {
-           if (Input.GetKeyDown(SUPPORTED_KEYS[i])) 
-           {
-                rows[rowIndex].tiles[columnIndex].SetLetter((char)SUPPORTED_KEYS[i]);
-                currentRow.tiles[columnIndex].SetState(occupiedState);
-                columnIndex++;
-                break;
-           }
+            for (int i = 0; i < SUPPORTED_KEYS.Length; i++)
+            {
+                if (Input.GetKeyDown(SUPPORTED_KEYS[i]))
+                {
+                    currentRow.tiles[columnIndex].SetLetter((char)SUPPORTED_KEYS[i]);
+                    currentRow.tiles[columnIndex].SetState(occupiedState);
+                    columnIndex++;
+                    break;
+                }
+            }
         }
     }
 
     private void SubmitRow(Row row)
     {
+        if (!IsValidWord(row.word))
+        {
+            invalidWordText.SetActive(true);
+            return;
+        }
+
+        string remaining = word;
+
+        // Check correct/incorrect letters first
         for (int i = 0; i < row.tiles.Length; i++)
         {
             Tile tile = row.tiles[i];
@@ -95,23 +130,99 @@ public class Board : MonoBehaviour
             if (tile.letter == word[i])
             {
                 tile.SetState(correctState);
+
+                remaining = remaining.Remove(i, 1);
+                remaining = remaining.Insert(i, " ");
             }
-            else if (word.Contains(tile.letter))
-            {
-                tile.SetState(wrongSpotState);
-            }
-            else 
+            else if (!word.Contains(tile.letter))
             {
                 tile.SetState(incorrectState);
             }
         }
 
+        // Check wrong spots after
+        for (int i = 0; i < row.tiles.Length; i++)
+        {
+            Tile tile = row.tiles[i];
+
+            if (tile.state != correctState && tile.state != incorrectState)
+            {
+                if (remaining.Contains(tile.letter))
+                {
+                    tile.SetState(wrongSpotState);
+
+                    int index = remaining.IndexOf(tile.letter);
+                    remaining = remaining.Remove(index, 1);
+                    remaining = remaining.Insert(index, " ");
+                }
+                else
+                {
+                    tile.SetState(incorrectState);
+                }
+            }
+        }
+
+        if (HasWon(row)) {
+            enabled = false;
+        }
+
         rowIndex++;
         columnIndex = 0;
 
-        if (rowIndex >= rows.Length)
-        {
+        if (rowIndex >= rows.Length) {
             enabled = false;
         }
     }
+
+    private bool IsValidWord(string word)
+    {
+        for (int i = 0; i < validWords.Length; i++)
+        {
+            if (string.Equals(word, validWords[i], System.StringComparison.OrdinalIgnoreCase)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool HasWon(Row row)
+    {
+        for (int i = 0; i < row.tiles.Length; i++)
+        {
+            if (row.tiles[i].state != correctState) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void ClearBoard()
+    {
+        for (int row = 0; row < rows.Length; row++)
+        {
+            for (int col = 0; col < rows[row].tiles.Length; col++)
+            {
+                rows[row].tiles[col].SetLetter('\0');
+                rows[row].tiles[col].SetState(emptyState);
+            }
+        }
+
+        rowIndex = 0;
+        columnIndex = 0;
+    }
+
+    private void OnEnable()
+    {
+        tryAgainButton.SetActive(false);
+        newWordButton.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        tryAgainButton.SetActive(true);
+        newWordButton.SetActive(true);
+    }
+
 }

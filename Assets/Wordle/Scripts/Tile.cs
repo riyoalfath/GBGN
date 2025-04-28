@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
@@ -10,19 +10,21 @@ public class Tile : MonoBehaviour
         public Color fillColor;
         public Color outlineColor;
     }
-    private TextMeshProUGUI text;
+
+    public State state { get; private set; }
+    public char letter { get; private set; }
+
     private Image fill;
     private Outline outline;
-    
-    public State state { get; private set; }
-    public char letter { get; private set; }   
+    private TextMeshProUGUI text;
 
     private void Awake()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
         fill = GetComponent<Image>();
         outline = GetComponent<Outline>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
     }
+
     public void SetLetter(char letter)
     {
         this.letter = letter;
@@ -35,4 +37,5 @@ public class Tile : MonoBehaviour
         fill.color = state.fillColor;
         outline.effectColor = state.outlineColor;
     }
+
 }
