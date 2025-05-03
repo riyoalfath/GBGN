@@ -1,76 +1,59 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-public class PlayerController : MonoBehaviour
+
+public class PlayerControllers : MonoBehaviour
 {
-    public float moveSpeed;
-    private bool isMoving;
-    private Vector2 input;
-    private Animator animator;
-    public LayerMask solidObjectsLayer;
-    public LayerMask interactableLayer;
+    [SerializeField] private float moveSpeed = 4.0f;
+
+    private PlayerControls playerControls;
+    private Vector2 movement;
+    private Rigidbody2D rb;
+    private Animator playerAnimator;
+    private bool isMoving = false;
+
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-    }
-    public void HandleUpdate()
-    {
-        if (!isMoving)
-        {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-
-            if (input != Vector2.zero)
-            {
-                animator.SetFloat("moveX", input.x);
-                animator.SetFloat("moveY", input.y);
-                var targetPos = transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
-
-                if (IsWalkable(targetPos))
-                       StartCoroutine(Move(targetPos));
-
-            }
-        }
-        animator.SetBool("isMoving", isMoving);
-        
-        if (Input.GetKeyDown(KeyCode.E))
-            Interact();
+        playerControls = new PlayerControls();
+        rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
     }
 
-    void Interact()
+    private void OnEnable()
     {
-        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
-        var interactPos = transform.position + facingDir;
-
-        // Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
-
-        var collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
-        if (collider != null)
-        {
-            collider.GetComponent<Interactable>()?.Interact();
-        }
-    }
-    IEnumerator Move(Vector3 targetPos)
-    {
-        isMoving = true;
-        while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        transform.position = targetPos;
-        isMoving = false;
+        playerControls.Enable();
     }
 
-    private bool IsWalkable(Vector3 targetPos)
+    private void OnDisable()
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer | interactableLayer) != null)
+        playerControls.Disable();
+    }
+
+    private void Update()
+    {
+        PlayerInput();
+        playerAnimator.SetBool("isMoving", isMoving);
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void PlayerInput()
+    {
+        movement = playerControls.Player.Move.ReadValue<Vector2>();
+
+        // Only update facing direction if there's movement input
+        if (movement != Vector2.zero)
         {
-            return false;
+            playerAnimator.SetFloat("moveX", movement.x);
+            playerAnimator.SetFloat("moveY", movement.y);
         }
-        return true;
+
+        isMoving = movement != Vector2.zero;
+    }
+
+    private void Move()
+    {
+        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
 }
