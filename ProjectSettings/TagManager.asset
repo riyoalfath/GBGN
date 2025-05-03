@@ -3,17 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - NPC_Dead
+  - Vegetation
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactable
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Vegetation
+  - Background
+  - SolidObject
   - 
   - 
   - 
@@ -40,6 +42,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 609946847
+    locked: 0
+  - name: Foreground
+    uniqueID: 3771937845
     locked: 0
   - name: Player
     uniqueID: 1208390965
