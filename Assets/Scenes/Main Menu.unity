@@ -4264,8 +4264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4423b1119c9664540ac3646f44a44cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitSoundEffect: {fileID: 8300000, guid: 97cc9a0a4650436469270a13895a8d34, type: 3}
-  audioSource: {fileID: 1355786155}
 --- !u!1 &1355786153
 GameObject:
   m_ObjectHideFlags: 0
