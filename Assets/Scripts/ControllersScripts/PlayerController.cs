@@ -9,12 +9,14 @@ public class PlayerControllers : MonoBehaviour
     private Rigidbody2D rb;
     private Animator playerAnimator;
     private bool isMoving = false;
+    public VectorValue startingPosition;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        transform.position = startingPosition.initialValue;
     }
 
     private void OnEnable()

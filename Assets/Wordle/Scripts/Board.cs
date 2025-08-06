@@ -21,6 +21,8 @@ public class Board : MonoBehaviour
     private string[] solutions;
     private string[] validWords;
     private string word;
+    public string sceneToLoad;
+
 
     [Header("Tiles")]
     public Tile.State emptyState;
@@ -62,6 +64,13 @@ public class Board : MonoBehaviour
         enabled = true;
     }
 
+    public void DoneGame()
+    {
+        Debug.Log("Player complete the game");
+
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
     public void TryAgain()
     {
         ClearBoard();
@@ -73,6 +82,8 @@ public class Board : MonoBehaviour
     {
         word = solutions[Random.Range(0, solutions.Length)];
         word = word.ToLower().Trim();
+        // force word
+        word = "tesis";
     }
 
     private void Update()
